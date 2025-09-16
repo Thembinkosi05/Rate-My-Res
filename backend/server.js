@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const db = require('./models'); // This imports your sequelize instance and models
+const authRoutes = require('./routes/auth');
 
   // Test database connection using Sequelize
 db.sequelize.authenticate()
@@ -53,6 +54,9 @@ pool.connect()
 app.get('/', (req, res) => {
     res.send('API is running...');
 });
+
+// Use the auth routes
+app.use('/api/auth', authRoutes)
 
 // Start the server
 app.listen(PORT, () => {
