@@ -1,5 +1,6 @@
 require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
+const residenceRoutes = require('./routes/residences'); // NEW LINE HERE
 //const { Pool } = require('pg'); // Import Pool from pg
 
 const app = express();
@@ -7,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 const db = require('./models'); // This imports your sequelize instance and models
 const authRoutes = require('./routes/auth');
+
 
   // Test database connection using Sequelize
 db.sequelize.authenticate()
@@ -55,8 +57,9 @@ app.get('/', (req, res) => {
     res.send('API is running...');
 });
 
-// Use the auth routes
+// intergrating routes to the server
 app.use('/api/auth', authRoutes)
+app.use('/api/residences', residenceRoutes)
 
 // Start the server
 app.listen(PORT, () => {
