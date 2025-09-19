@@ -1,6 +1,7 @@
 require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
-const residenceRoutes = require('./routes/residences'); // NEW LINE HERE
+const residenceRoutes = require('./routes/residences');
+const reviewRoutes = require('./routes/reviews');
 //const { Pool } = require('pg'); // Import Pool from pg
 
 const app = express();
@@ -60,6 +61,7 @@ app.get('/', (req, res) => {
 // intergrating routes to the server
 app.use('/api/auth', authRoutes)
 app.use('/api/residences', residenceRoutes)
+app.use('/api/residences', reviewRoutes);
 
 // Start the server
 app.listen(PORT, () => {
